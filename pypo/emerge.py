@@ -1,4 +1,3 @@
-"""Python Portage"""
 from pprint import pprint
 from re import compile, search
 from typing import List, NamedTuple, Dict

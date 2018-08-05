@@ -1,4 +1,3 @@
-"""Python Portage"""
 from pprint import pprint
 from tkinter import Label, Button, Tk
 
