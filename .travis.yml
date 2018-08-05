@@ -1,9 +1,8 @@
 language: python
 python:
-  - "3.4"
   - "3.5"
   - "3.6"
-  - "3.7"
+  - "3.7-dev"
 install:
   - pip install -U pip setuptools
   - pip install -U coveralls pycodestyle pydocstyle pytest-mccabe pytest-random
@@ -12,7 +11,7 @@ before_script:
   - python3 -V
 script:
   - coverage run --source=pypo,test -m pytest --random --mccabe
-  - pycodestyle moler
-  - pydocstyle
+  - pycodestyle --ignore=E501 --statistics --count pypo
+  - pydocstyle --count pypo
 after_success:
   - coveralls
