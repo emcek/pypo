@@ -1,8 +1,7 @@
 """Python Portage."""
+import re
 from pprint import pprint
-from re import compile, search
 from typing import List, NamedTuple, Dict
-
 
 EmergeRecord = NamedTuple('EmergeRecord', [('action', str),
                                            ('category', str),
@@ -12,26 +11,26 @@ EmergeRecord = NamedTuple('EmergeRecord', [('action', str),
                                            ('size', int)])
 
 
-def read_dtat(from_file: str) -> List[EmergeRecord]:
+def parse(data: str) -> List[EmergeRecord]:
     """
     Parse portage data from string.
 
-    :param from_file: data in string
+    :param data: emerge log data in string
     :return: List of emerge records
     """
-    emerge_line = compile(r'\[ebuild\s*'
-                          r'([NSUDrRFfIBb#*~]+)'      # action
-                          r'\s*\]\s*'
-                          r'([0-9a-z\-]*)'            # category
-                          r'/'
-                          r'([0-9A-Za-z.\-]*)'        # package
-                          r'-'
-                          r'([0-9.]*)'                # version
-                          r'(?::?.*::gentoo\]?\s*)'
-                          r'((?:[0-9A-Z_]*=".*")*)'   # flags
-                          r'\s*'
-                          r'([\d,]*\s+[KMiB]*)')      # vsize
-    emerge_data = [list(emerge_datum) for emerge_datum in emerge_line.findall(from_file)]
+    emerge_line = re.compile(r'\[ebuild\s*'
+                             r'([NSUDrRFfIBb#*~]+)'  # action
+                             r'\s*\]\s*'
+                             r'([0-9a-z\-]*)'  # category
+                             r'/'
+                             r'([0-9A-Za-z.\-]*)'  # package
+                             r'-'
+                             r'([0-9.]*)'  # version
+                             r'(?::?.*::gentoo\]?\s*)'
+                             r'((?:[0-9A-Z_]*=".*")*)'  # flags
+                             r'\s*'
+                             r'([\d,]*\s+[KMiB]*)')  # size
+    emerge_data = [list(emerge_datum) for emerge_datum in emerge_line.findall(data)]
 
     pprint(emerge_data, width=200)
     pprint(len(emerge_data))
@@ -55,7 +54,7 @@ def convert2kib(size: str) -> int:
     :param size: size with unit
     :return: size in KiB
     """
-    match = search(r'([\d,]+)\s*([KMGiB]+)', size)
+    match = re.search(r'([\d,]+)\s*([KMGiB]+)', size)
     size = match.group(1).replace(',', '')
     unit = match.group(2).upper()
 
