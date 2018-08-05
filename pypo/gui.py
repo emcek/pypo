@@ -6,7 +6,9 @@ from pypo.emerge import read_dtat
 
 
 class GUI:
+
     """Python Portage GUI in tkinter."""
+
     def __init__(self, master: Tk) -> None:
         """
         Basic initialization.
@@ -33,3 +35,4 @@ class GUI:
 
         database = read_dtat(records_from_file)
         pprint(database)
+        print(len(database))
