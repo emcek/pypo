@@ -1,3 +1,4 @@
+"""Python Portage."""
 from pprint import pprint
 from re import compile, search
 from typing import List, NamedTuple, Dict
@@ -43,9 +44,12 @@ def convert2kibibytes(size: str) -> int:
     size = match.group(1).replace(',', '')
     unit = match.group(2).upper()
 
+    size_kib = 0
     if 'K' in unit:
-        return int(size)
+        size_kib = int(size)
     elif 'M' in unit:
-        return int(size) * 1024
+        size_kib = int(size) * 1024
     elif 'G' in unit:
-        return int(size) * 1024 * 1024
+        size_kib = int(size) * 1024 * 1024
+
+    return size_kib

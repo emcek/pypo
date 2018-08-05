@@ -1,3 +1,4 @@
+"""Python Portage."""
 from pprint import pprint
 from tkinter import Label, Button, Tk
 
@@ -5,6 +6,7 @@ from pypo.emerge import read_dtat
 
 
 class GUI:
+    """Python Portage GUI in tkinter."""
     def __init__(self, master: Tk) -> None:
         """
         Basic initialization.
@@ -26,8 +28,8 @@ class GUI:
     @staticmethod
     def greet() -> None:
         """Just show debug data to console."""
-        with open('../e01.txt') as f:
-            records_from_file = f.read()
+        with open('../e01.txt') as emerge_log:
+            records_from_file = emerge_log.read()
 
         database = read_dtat(records_from_file)
         pprint(database)
