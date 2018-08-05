@@ -15,7 +15,7 @@ class GUI:
 
         :param master: root widget
         """
-        self.log = GUI.set_logger()
+        self.log = _set_logger()
 
         self.root = master
         self.root.title('A simple GUI')
@@ -38,17 +38,17 @@ class GUI:
         self.log.debug(pformat(database))
         self.log.info(len(database))
 
-    @staticmethod
-    def set_logger() -> Logger:
-        """
-        Setup of logger.
 
-        :return: instance of configured logger
-        """
-        log = getLogger(__name__)
-        log.setLevel(DEBUG)
-        ch = StreamHandler()
-        ch.setLevel(DEBUG)
-        ch.setFormatter(Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
-        log.addHandler(ch)
-        return log
+def _set_logger() -> Logger:
+    """
+    Setup of logger.
+
+    :return: instance of configured logger
+    """
+    logger = getLogger(__name__)
+    logger.setLevel(DEBUG)
+    log_handler = StreamHandler()
+    log_handler.setLevel(DEBUG)
+    log_handler.setFormatter(Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+    logger.addHandler(log_handler)
+    return logger
