@@ -10,7 +10,9 @@ before_script:
   - pip install -Ur requirements.txt
   - python3 -V
 script:
-  - coverage run --source=pypo -m pytest --random --mccabe
+  - python3 -m pytest --random -v tests
+  - python3 -m pytest --mccabe -v tests
+  - coverage run --source=pypo -m pytest -v --random
   - pycodestyle --ignore=E501 --statistics --count pypo
   - pydocstyle --ignore=D203,D212,D401 --count pypo
   # - pylint pypo
