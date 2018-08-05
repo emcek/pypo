@@ -12,6 +12,6 @@ before_script:
 script:
   - coverage run --source=pypo,test -m pytest --random --mccabe
   - pycodestyle --ignore=E501 --statistics --count pypo
-  - pydocstyle --ignore=D100,D101,D400,D401 --count pypo
+  - pydocstyle --ignore=D100,D101,D212,D400,D401 --count pypo
 after_success:
   - coveralls
