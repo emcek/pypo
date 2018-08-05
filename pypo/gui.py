@@ -6,7 +6,6 @@ from pypo.emerge import parse
 
 
 class GUI:
-
     """Python Portage GUI in tkinter."""
 
     def __init__(self, master: Tk) -> None:
