@@ -26,7 +26,7 @@ class GUI:
     @staticmethod
     def greet() -> None:
         """Just show debug data to console."""
-        with open('e01.txt') as f:
+        with open('../e01.txt') as f:
             records_from_file = f.read()
 
         database = read_dtat(records_from_file)
