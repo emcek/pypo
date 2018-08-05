@@ -1,6 +1,6 @@
 from tkinter import Tk
 
-from gui import GUI
+from pypo.gui import GUI
 
 if __name__ == '__main__':
     root = Tk()

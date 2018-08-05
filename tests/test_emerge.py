@@ -1,5 +1,5 @@
 def test_convert2kibibytes():
-    from emerge import convert2kibibytes
+    from pypo.emerge import convert2kibibytes
     assert convert2kibibytes('12 KiB') == 12
     assert convert2kibibytes('34,567 KiB') == 34567
     assert convert2kibibytes('31 MiB') == 31744
