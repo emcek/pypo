@@ -15,4 +15,4 @@ script:
   - pydocstyle --ignore=D100,D101,D212,D400,D401 --count pypo
   # - pylint pypo
 after_success:
-  - coveralls
+  - if [[ $TRAVIS_PYTHON_VERSION == 3.6 && $TRAVIS_OS_NAME == "linux" ]]; then coveralls; fi
