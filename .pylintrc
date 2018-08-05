@@ -167,7 +167,7 @@ evaluation=10.0 - ((float(5 * error + warning + refactor + convention) / stateme
 output-format=text
 
 # Tells whether to display a full report or only the messages.
-reports=no
+reports=yes
 
 # Activate the evaluation score.
 score=yes
@@ -228,7 +228,7 @@ const-naming-style=UPPER_CASE
 
 # Regular expression matching correct constant names. Overrides const-naming-
 # style.
-#const-rgx=
+const-rgx=[a-z_][a-z0-9_]{2,30}$
 
 # Minimum line length for functions/classes that require docstrings, shorter
 # ones are exempt.
