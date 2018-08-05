@@ -1,3 +1,4 @@
+"""Python Portage"""
 from tkinter import Tk
 
 from pypo.gui import GUI

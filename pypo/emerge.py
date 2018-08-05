@@ -1,3 +1,4 @@
+"""Python Portage"""
 from pprint import pprint
 from re import compile, search
 from typing import List, NamedTuple, Dict
@@ -7,6 +8,12 @@ EmergeRecord = NamedTuple('EmergeRecord', [('action', str), ('category', str), (
 
 
 def read_dtat(from_file: str) -> List[EmergeRecord]:
+    """
+    Parse portage data from string.
+
+    :param from_file: data in string
+    :return: List of emerge records
+    """
     # _________________________________------action-------________---category--_-----package-----_-version-______________________--------flags---------___-------size------___
     emerge_line = compile(r'\[ebuild\s*([NSUDrRFfIBb#*~]+)\s*\]\s*([0-9a-z\-]*)/([0-9A-Za-z.\-]*)-([0-9.]*)(?::?.*::gentoo\]?\s*)((?:[0-9A-Z_]*=".*")*)\s*([\d,]*\s+[KMiB]*)')
     emerge_data = [list(emerge_datum) for emerge_datum in emerge_line.findall(from_file)]
