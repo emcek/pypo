@@ -12,7 +12,7 @@ before_script:
 script:
   - coverage run --source=pypo -m pytest --random --mccabe
   - pycodestyle --ignore=E501 --statistics --count pypo
-  - pydocstyle --ignore=D100,D101,D212,D400,D401 --count pypo
+  - pydocstyle --ignore=D212,D401 --count pypo
   # - pylint pypo
 after_success:
   - if [[ $TRAVIS_PYTHON_VERSION == 3.6 && $TRAVIS_OS_NAME == "linux" ]]; then coveralls; fi
