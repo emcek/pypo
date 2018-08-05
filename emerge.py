@@ -20,13 +20,19 @@ def read_dtat(from_file: str) -> List[EmergeRecord]:
                 emerge_data[i][j] = dict(zip(element.split('"')[0::2], element.split('"')[1::2]))
                 emerge_data[i][j] = {key.strip('='): val for key, val in emerge_data[i][j].items()}
             elif j == 5:  # size
-                emerge_data[i][j] = convert2blocks(element)
+                emerge_data[i][j] = convert2kibibytes(element)
 
     database = [EmergeRecord(*emerge_datum) for emerge_datum in emerge_data]
     return database
 
 
-def convert2blocks(size: str) -> int:
+def convert2kibibytes(size: str) -> int:
+    """
+    Convert string representation of size in KiB, MiB or in GiB to KiB as integer.
+
+    :param size: size with unit
+    :return: size in KiB
+    """
     match = search(r'([\d,]+)\s*([KMGiB]*)', size)
     size = match.group(1).replace(',', '')
     unit = match.group(2).upper()
